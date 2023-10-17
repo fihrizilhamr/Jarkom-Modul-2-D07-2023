@@ -118,17 +118,12 @@ Buatlah _website_ utama pada node arjuna dengan akses ke **arjuna.yyy.com** deng
 
 **Jawaban**
 
-Untuk membuat website utama pertama tama kita harus melakukan update dan isntall bind9 pada node yudhistira. Setelah itu kita harus mengubah named.conf.local yang ada pada direktori bind dengan command berikut nano /etc/bind/named.conf.local ubah agar menjadi seperti ini
-
-<img width="816" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/d6f63f35-e460-4eb6-97bb-a229a6200af9">
-
-Kemudian kita membuat 1 folder bernama jarkom dengan command mkdir /etc/bind/jarkom. Selanjutnya kita harus salin file db.local pada path /etc/bind ke dalam folder jarkom yang baru saja dibuat dengan cp /etc/bind/db.local /etc/bind/jarkom/arjuna.d07.com kemudian kami membuka file arjuna.d07.com dan mengubah beberapa bagian.
-
-Kemudian kita melakukan restart bin dengan perintah : service bind9 restart dan merubah settingan nameserver yang ada pada nakula dan sadewa dengan mengganti name server pada nano /etc/resolv.conf
-
-<img width="596" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/93bfe20b-5730-432e-98aa-a4f749427487">
-
-Terakhir kami melakukan testing dengan perintah ping ``arjuna.d07.com`` -c 5 dan ping ``www.arjuna.d07.com``.
+- Lakukan update dan isntall bind9 pada node yudhistira. Setelah itu kita harus mengubah named.conf.local yang ada pada direktori bind dengan command ``nano /etc/bind/named.conf.local``.
+- Kemudian buat 1 folder bernama jarkom dengan command ``mkdir /etc/bind/jarkom``.
+- Selanjutnya salin file db.local pada path ``/etc/bind`` ke dalam folder jarkom yang baru saja dibuat dengan ``cp /etc/bind/db.local /etc/bind/jarkom/arjuna.d07.com``.
+- Kemudian kami membuka file arjuna.d07.com dan mengubah beberapa bagian.
+- Kemudian kita melakukan restart bin dengan _command_ ``service bind9 restart`` dan merubah settingan nameserver yang ada pada nakula dan sadewa dengan mengganti name server pada ``nano /etc/resolv.conf``.
+- Terakhir kami melakukan testing dengan perintah ping ``arjuna.d07.com`` -c 5 dan ping ``www.arjuna.d07.com``.
 
 ### Soal 3
 
