@@ -16,6 +16,99 @@ Anggota Kelompok D07:
 Yudhistira akan digunakan sebagai DNS Master, Werkudara sebagai DNS Slave, Arjuna merupakan _Load Balancer_ yang terdiri dari beberapa Web Server yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Buatlah topologi dengan pembagian yang sudah ditentukan.
 
 **Jawaban**
+Pandudewanata sebagai Router:
+``
+auto eth0
+iface eth0 inet dhcp
+
+auto eth1
+iface eth1 inet static
+	address 10.25.1.1
+	netmask 255.255.255.0
+
+auto eth2
+iface eth2 inet static
+	address 10.25.2.1
+	netmask 255.255.255.0
+
+auto eth3
+iface eth3 inet static
+	address 10.25.3.1
+	netmask 255.255.255.0
+``
+
+Nakula sebagai Client:
+
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.1.2
+	netmask 255.255.255.0
+	gateway 10.25.1.1
+``
+
+Sadewa sebagai Client:
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.1.3
+	netmask 255.255.255.0
+	gateway 10.25.1.1
+``
+
+
+Yudhistira sebagai DNS Master:
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.1.4
+	netmask 255.255.255.0
+	gateway 10.25.1.1
+``
+
+Werkudara sebagai DNS Slave:
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.1.5
+	netmask 255.255.255.0
+	gateway 10.25.1.1
+``
+
+Arjuna merupakan Load Balancer: 
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.2.2
+	netmask 255.255.255.0
+	gateway 10.25.2.1
+``
+Web Server Prabakusuma
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.3.2
+	netmask 255.255.255.0
+	gateway 10.25.3.1
+``
+
+Web Server Abimanyu
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.3.3
+	netmask 255.255.255.0
+	gateway 10.25.3.1
+``
+
+Web Server Wisanggeni
+``
+auto eth0
+iface eth0 inet static
+	address 10.25.3.4
+	netmask 255.255.255.0
+	gateway 10.25.3.1
+``
 <img width="584" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/557015d0-76b4-494c-88e1-516e7f83722e">
 
 ### Soal 2
@@ -196,6 +289,14 @@ ln -s /etc/nginx/sites-available/wayang /etc/nginx/sites-enabled
 service php7.2-fpm start
 service nginx restart
 ```
+
+**Testing**
+lynx 10.25.3.2:8001
+<img width="359" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/88759e16-4e35-4cf6-9552-7f9aaf11d811">
+
+<img width="366" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/0b1f7ab8-4394-4725-b1e1-b9ed9f2246c6">
+
+
 
 
 ### Soal 11
