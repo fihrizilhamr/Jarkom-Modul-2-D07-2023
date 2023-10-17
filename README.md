@@ -13,31 +13,31 @@ Anggota Kelompok D07:
 
 ### Soal 1
 
-Yudhistira akan digunakan sebagai DNS Master, Werkudara sebagai DNS Slave, Arjuna merupakan Load Balancer yang terdiri dari beberapa Web Server yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Buatlah topologi dengan pembagian yang sudah ditentukan.
+Yudhistira akan digunakan sebagai DNS Master, Werkudara sebagai DNS Slave, Arjuna merupakan _Load Balancer_ yang terdiri dari beberapa Web Server yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Buatlah topologi dengan pembagian yang sudah ditentukan.
 
 **Jawaban**
 
 ### Soal 2
 
-Buatlah website utama pada node arjuna dengan akses ke **arjuna.yyy.com** dengan alias **www.arjuna.yyy.com** dengan yyy merupakan kode kelompok.
+Buatlah _website_ utama pada node arjuna dengan akses ke **arjuna.yyy.com** dengan alias **www.arjuna.yyy.com** dengan yyy merupakan kode kelompok.
 
 **Jawaban**
 
 ### Soal 3
 
-Dengan cara yang sama seperti soal nomor 2, buatlah website utama dengan akses ke **abimanyu.yyy.com** dan alias **www.abimanyu.yyy.com**.
+Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses ke **abimanyu.yyy.com** dan alias **www.abimanyu.yyy.com**.
 
 **Jawaban**
 
 ### Soal 4
 
-Kemudian, karena terdapat beberapa web yang harus di-deploy, buatlah subdomain **parikesit.abimanyu.yyy.com** yang diatur DNS-nya di Yudhistira dan mengarah ke Abimanyu.
+Kemudian, karena terdapat beberapa web yang harus di-_deploy_, buatlah subdomain **parikesit.abimanyu.yyy.com** yang diatur DNS-nya di Yudhistira dan mengarah ke Abimanyu.
 
 **Jawaban**
 
 ### Soal 5
 
-Buat juga reverse domain untuk domain utama. **(Abimanyu saja yang direverse)**
+Buat juga _reverse_ domain untuk domain utama. **(Abimanyu saja yang direverse)**
 
 **Jawaban**
 
@@ -61,13 +61,13 @@ Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdom
 
 ### Soal 9
 
-Arjuna merupakan suatu Load Balancer Nginx dengan tiga worker (yang juga menggunakan nginx sebagai webserver) yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Lakukan deployment pada masing-masing worker.
+Arjuna merupakan suatu _Load Balancer_ Nginx dengan tiga worker (yang juga menggunakan nginx sebagai webserver) yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Lakukan _deployment_ pada masing-masing worker.
 
 **Jawaban**
 
 ### Soal 10
 
-Kemudian gunakan algoritma **Round Robin** untuk Load Balancer pada **Arjuna**. Gunakan _server_name_ pada soal nomor 1. Untuk melakukan pengecekan akses alamat web tersebut kemudian pastikan worker yang digunakan untuk menangani permintaan akan berganti ganti secara acak. Untuk webserver di masing-masing worker wajib berjalan di port 8001-8003. Contoh
+Kemudian gunakan algoritma **Round Robin** untuk Load Balancer pada **Arjuna**. Gunakan _server_name_ pada soal nomor 1. Untuk melakukan pengecekan akses alamat web tersebut kemudian pastikan _worker_ yang digunakan untuk menangani permintaan akan berganti ganti secara acak. Untuk webserver di masing-masing worker wajib berjalan di port 8001-8003. Contoh
 - _Prabakusuma:8001_
 - _Abimanyu:8002_
 - _Wisanggeni:8003_
@@ -88,19 +88,19 @@ Setelah itu ubahlah agar url **www.abimanyu.yyy.com/index.php/home** menjadi **w
 
 ### Soal 13
 
-Selain itu, pada subdomain **www.parikesit.abimanyu.yyy.com**, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy
+Selain itu, pada subdomain **www.parikesit.abimanyu.yyy.com**, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy.
 
 **Jawaban**
 
 ### Soal 14
 
-Pada subdomain tersebut folder /public hanya dapat melakukan _directory listing_ sedangkan pada folder /secret tidak dapat diakses (_403 Forbidden_).
+Pada subdomain tersebut folder **/public** hanya dapat melakukan _directory listing_ sedangkan pada folder /secret tidak dapat diakses (_403 Forbidden_).
 
 **Jawaban**
 
 ### Soal 15
 
-Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah 404 Not Found dan 403 Forbidden.
+Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah **_404 Not Found_** dan **_403 Forbidden_**.
 
 **Jawaban**
 
@@ -113,13 +113,13 @@ Buatlah suatu konfigurasi virtual host agar file asset **www.parikesit.abimanyu.
 
 ### Soal 17
 
-Agar aman, buatlah konfigurasi agar **www.rjp.baratayuda.abimanyu.yyy.com** hanya dapat diakses melalui port 14000 dan 14400.
+Agar aman, buatlah konfigurasi agar **www.rjp.baratayuda.abimanyu.yyy.com** hanya dapat diakses melalui port **14000** dan **14400**.
 
 **Jawaban**
 
 ### Soal 18
 
-Untuk mengaksesnya buatlah autentikasi username berupa “Wayang” dan password “baratayudayyy” dengan yyy merupakan kode kelompok. Letakkan DocumentRoot pada /var/www/rjp.baratayuda.abimanyu.yyy.
+Untuk mengaksesnya buatlah autentikasi username berupa **“Wayang”** dan password **“baratayudayyy”** dengan yyy merupakan kode kelompok. Letakkan DocumentRoot pada **/var/www/rjp.baratayuda.abimanyu.yyy**.
 
 **Jawaban**
 
