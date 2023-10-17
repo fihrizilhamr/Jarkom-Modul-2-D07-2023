@@ -9,13 +9,14 @@ Anggota Kelompok D07:
 | Danno Denis Dhaifullah | 5025211027 |
 | Fihriz Ilham Rabbany | 5025211040 |
 
-## PEMBAHASAN
+## Pembahasan
 
 ### Soal 1
 
 Yudhistira akan digunakan sebagai DNS Master, Werkudara sebagai DNS Slave, Arjuna merupakan _Load Balancer_ yang terdiri dari beberapa Web Server yaitu Prabakusuma, Abimanyu, dan Wisanggeni. Buatlah topologi dengan pembagian yang sudah ditentukan.
 
 **Jawaban**
+<img width="584" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/557015d0-76b4-494c-88e1-516e7f83722e">
 
 ### Soal 2
 
@@ -661,8 +662,9 @@ echo "
 ```
 
 Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
-
 ``
 service apache2 restart
 ``
 
+## Kendala
+Tidak ada kendala yang siginifikan dalam pengerjaan praktikum.
