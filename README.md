@@ -264,7 +264,7 @@ Agar dapat tetap dihubungi ketika DNS Server Yudhistira bermasalah, buat juga We
 
 - Edit pada ``/etc/bind/named.conf.local`` di yudhistira dan sesuaikan.
 
-- ![WhatsApp Image 2023-10-17 at 20 23 20_8cc7789f](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/fc4af330-976d-4412-bf7a-4585af0dfe55)
+![WhatsApp Image 2023-10-17 at 20 23 20_8cc7789f](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/fc4af330-976d-4412-bf7a-4585af0dfe55)
 
 ![WhatsApp Image 2023-10-17 at 20 23 59_2f48eca6](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/ad2c5319-83fd-451d-bbfc-9db7984e1c35)
 
