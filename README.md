@@ -200,10 +200,27 @@ Kemudian, karena terdapat beberapa web yang harus di-_deploy_, buatlah subdomain
 
 **Jawaban**
 
-![WhatsApp Image 2023-10-17 at 20 24 48_6e6f3212](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/1195e727-93de-4b28-8ee3-5590b4ad36a9)
-
 - Pada yudhistira, buka ``nano /etc/bind/abimanyu/abimanyu.d07.com`` dan tambahkan konfigurasi untuk menambahkan subdomain.
+
+```
+$TTL    604800  
+@       IN      SOA     abimanyu.d07.com. root.abimanyu.d07.com. (
+                        2      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@               IN      NS      abimanyu.d07.com.
+@               IN      A       10.25.3.3 ; IP Abimanyu
+www             IN      CNAME   abimanyu.d07.com.
+parikesit       IN      A       10.25.3.3 ; IP Abimanyu
+www.parikesit   IN      CNAME   parikesit.abimanyu.d07.com.
+```
+
 - Dengan konfigurasi diatas, maka akan menambahkan domain dengan nama parikesit yang juga akan mengarah ke ip abimanyu. Kemudian lakukan ``restart bind service bind9 restart`` dan lakukan pengetesan untuk melakukan ping pada subdomain.
+
+![WhatsApp Image 2023-10-17 at 20 24 48_6e6f3212](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/1195e727-93de-4b28-8ee3-5590b4ad36a9)
 
 ### Soal 5
 
@@ -211,10 +228,33 @@ Buat juga _reverse_ domain untuk domain utama. **(Abimanyu saja yang direverse)*
 
 **Jawaban**
 
-![WhatsApp Image 2023-10-17 at 20 25 28_d65e032d](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/bdfb9db7-01d1-4ae1-bdac-d00b4c2215c2)
+
 
 - Pertama tama, edit ``named.conf.local`` dengan membuka ``nano /etc/bind/named.conf.local`` kemudian tambahkan konfigurasi untuk melakukan reverse domain utama yaitu abimanyu.
-- Kemudian kami harus melakukan restart service bind9 restart untuk melakukan pengecekan konfigurasi maka pada _client_ (nakula/sadewa) bisa dilakukan download dengan nameserver awal dulu (192.168.122.1) agar terhubung ke internet untuk melakukan ``apt-get update`` dan juga ``apt-get install dnsutils``. Setelah proses download selesai maka ubah nameserver ke arah yudhistira untuk melakukan cek konfigurasi dan apabila berhasil maka akan muncul output seperti gmabar di atas.
+
+```
+zone "1.25.10.in-addr.arpa" {  
+        type master;  
+        file "/etc/bind/wayang/1.25.10.in-addr.arpa
+```
+- Sama seperti sebelumnya dengan copy file db.local, kami melakukan perubahan pada file 1.25.10.in-addr.arpa menjadi seperti gambar di bawah ini.
+
+```
+$TTL    604800  
+@       IN      SOA     abimanyu.d07.com. root.abimanyu.d07.com. (
+                        2      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+1.25.10.in-addr.arpa.  IN      NS      abimanyu.d07.com.
+4                       	IN      PTR     abimanyu.d07.com.
+```
+
+- Kemudian kami harus melakukan restart service bind9 restart untuk melakukan pengecekan konfigurasi maka pada _client_ (nakula/sadewa) bisa dilakukan download dengan nameserver awal dulu (192.168.122.1) agar terhubung ke internet untuk melakukan ``apt-get update`` dan juga ``apt-get install dnsutils``. Setelah proses download selesai maka ubah nameserver ke arah yudhistira untuk melakukan cek konfigurasi dan apabila berhasil maka akan muncul output seperti ini.
+
+![WhatsApp Image 2023-10-17 at 20 25 28_d65e032d](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/bdfb9db7-01d1-4ae1-bdac-d00b4c2215c2)
 
 ### Soal 6
 
@@ -223,17 +263,36 @@ Agar dapat tetap dihubungi ketika DNS Server Yudhistira bermasalah, buat juga We
 **Jawaban**
 
 - Edit pada ``/etc/bind/named.conf.local`` di yudhistira dan sesuaikan.
-- mengubah pada kedua dns, kemudian lakukan ``service bind9 restart``.
+
+- ![WhatsApp Image 2023-10-17 at 20 23 20_8cc7789f](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/fc4af330-976d-4412-bf7a-4585af0dfe55)
+
+![WhatsApp Image 2023-10-17 at 20 23 59_2f48eca6](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/ad2c5319-83fd-451d-bbfc-9db7984e1c35)
+
+- Mengubah pada kedua dns, kemudian lakukan ``service bind9 restart``.
 - Lakukan setting pada dns slave yaitu werkudara dengan mengunduh bind9 dengan cara ``apt-get update`` kemudian ``apt-get install bind9 -y``.
-- Tenambahkan pada /etc/bind/named.conf.local pada werkudara dengan kedua dns, karena kita mengubah pada keduanya.
+- Tambahkan pada /etc/bind/named.conf.local pada werkudara dengan kedua dns.
+
+```
+zone "arjuna.d07.com" {  
+        type master;
+	notify yes;
+        also-notify {10.25.1.5;};  //Masukan IP Werkudara
+        allow-transfer {10.25.1.5;};  //Masukan IP Werkudara
+        file "/etc/bind/wayang/arjuna.d07.com";
+};
+
+zone "abimanyu.d07.com" {  
+        type master;  
+	notify yes;
+        also-notify {10.25.1.5;};  //Masukan IP Werkudara
+        allow-transfer {10.25.1.5;};  //Masukan IP Werkudara
+        file "/etc/bind/wayang/abimanyu.d07.com
+```
+
 - Kemudian lakukan ``service bind9 restart``.
 - Lakukan ``service bind9 stop``
 - Pada yudhistira untuk melakukan cek apakah bisa mengakses melalui dns slave yang sudah dibuat. pada client (nakula/sadewa) masukkan 2 nameserver yaitu ip dari yudhistira dan juga ip dari werkudara dengan ``nano /etc/resolv.conf``.
 - Lakukan ping ke kedua dns pada client sadewa dan ping berhasil meskipun bind9 pada yudhistira di stop yang berarti konfigurasi dns slave berhasil.
-
-![WhatsApp Image 2023-10-17 at 20 23 20_8cc7789f](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/fc4af330-976d-4412-bf7a-4585af0dfe55)
-
-![WhatsApp Image 2023-10-17 at 20 23 59_2f48eca6](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/ad2c5319-83fd-451d-bbfc-9db7984e1c35)
 
 
 ### Soal 7
