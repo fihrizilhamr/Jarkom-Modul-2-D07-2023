@@ -301,6 +301,60 @@ Seperti yang kita tahu karena banyak sekali informasi yang harus diterima, buatl
 
 **Jawaban**
 
+- Lakukan konfigurasi untuk kasus ini adalah delegasi subdomain, Pada yudhistira kita melakukan edit file /etc/bind/abimanyu/abimanyu.d07.com dan mengubah menjadi seperti di bawah ini
+
+```
+$TTL    604800  
+@       IN      SOA     abimanyu.d07.com. root.abimanyu.d07.com. (
+                        2      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@               IN      NS      abimanyu.d07.com.
+@               IN      A       10.25.3.3 ; IP Abimanyu
+www             IN      CNAME   abimanyu.d07.com.
+parikesit       IN      A       10.25.3.3 ; IP Abimanyu
+www.parikesit   IN      CNAME   parikesit.abimanyu.d07.com.
+ns1             IN      A       10.25.1.5; IP Werkudara
+baratayuda      IN      NS      ns1
+```
+
+- keterangan ns untuk delegasi subdomain yang dimana baratayuda adalah subdomain yang akan didelegasikan. Kemudian kita melakukan edit file ``/etc/bind/named.conf.options``.
+- melakukan comment pada ``dnssec-validation auto;`` dan menambahkan ``allow-query{any;};`` kemudian pada ``/etc/bind/named.conf.local``.
+- Tambahkan _allow-transfer_ dengan IP werkudara, namun sebelumnya sudah di-set jadi tidak dilakukan perubahan karena sudah sesuai lakukan ``service bind9 stop``.
+- Pada Werkudara edit file ``/etc/bind/named.conf.options`` sama persis seperti poin nomor 3 dengan melakukan comment pada ``dnssec-validation auto;`` dan menambahkan ``allow-query{any;};``
+- Lakukan edit file ``/etc/bind/named.conf.local`` pada werkudara menjadi seperti
+
+```
+zone "baratayuda.abimanyu.d07.com"{  
+        type master;
+        file "/etc/bind/Baratayuda/baratayuda.abimanyu.d07.com";
+};
+```
+
+- sesuai ketentuan dengan folder baratayuda. buat directory sesuai folder ``mkdir /etc/bind/baratayuda``.
+- Kemudian lakukan copy pada db.local dengan ``cp /etc/bind/db.local /etc/bind/baratayuda/baratayuda.abimanyu.b07.com``.
+- Kemudian lakukan edit pada file ``baratayuda.abimanyu.d07.com``
+
+```
+$TTL    604800  
+@       IN      SOA     baratayuda.abimanyu.d07.com. root.baratayuda.abimanyu.d07.com.  (
+                        2      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@               IN      NS      baratayuda.abimanyu.d07.com.
+@               IN      A       10.25.3.3       ;IP Abimanyu
+www             IN      CNAME   baratayuda.abimanyu.d07.com.
+```
+
+- Dengan menambahkan alias www pada dns tersebut dan sesuai ketentuan dengan IP mengarah ke abimanyu. lakukan ``service bind9 stop``.
+- Lakukan testing pada _client_ (nakula/sadewa) pada delegasi subdomain yang telah dilakukan dengan dan tanpa alias (www).
+
 ![WhatsApp Image 2023-10-17 at 20 29 07_03cee6ef](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/f95d0bf2-a0d6-4dec-9387-6d719253df51)
 
 
@@ -311,8 +365,26 @@ Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdom
 **Jawaban**
 
 - Lakukan pemberian subdomain namun pada subdomain hasil delegasi sebelumnya dengan menambahkan rjp.dan alias www. kita melakukan perubahan pada file ``baratayuda.abimanyu.d07.com`` dengan ``nano /etc/bind/baratayuda/baratayuda.abimanyu.d07.com``.
+
+```
+$TTL    604800  
+@       IN      SOA     baratayuda.abimanyu.d07.com. root.baratayuda.abimanyu.d07.com.  (
+                        2      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+
+@               IN      NS      baratayuda.abimanyu.d07.com.
+@               IN      A       10.25.3.3       ;ip Abimanyu
+www             IN      CNAME   baratayuda.abimanyu.d07.com.
+rjp         IN      A       10.25.3.3       ;IP Abimanyu
+www.rjp     IN      CNAME   baratayuda.abimanyu.d07.com
+```
+
 - Tambahkan subdomain sesuai ketentuan yaitu subdomain rjp dan memberikan alias www.rjp untuk CNAME yang di set menuju subdomain sebelumnya. Lakukan ``service bind9 stop``.
-- test ping dengan subdomain dan alias yang diberikan.
+- Test ping dengan subdomain dan alias yang diberikan.
 
 ![WhatsApp Image 2023-10-17 at 20 31 04_5e51fc67](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/80c2c8ee-0125-47f3-a2aa-bf88f85543de)
 
