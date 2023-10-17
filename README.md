@@ -164,8 +164,31 @@ Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses
 
 **Jawaban**
 
-- Pertama kita perlu mengubah named.conf.local dengan perintah nano /etc/bind/named.conf.local
-- Kemudian kami membuat 1 folder bernama abimanyu dengan : ``mkdir /etc/bind/abimanyu``. Lalu, sama seperti sebelumnya dengan copy file db.local dengan ``cp /etc/bind/db.local /etc/bind/abimanyu/abimanyu.d07.com`` dan buka file abimanyu yang telah di copy, kemudian sesuaikan isinya.
+- Pertama kita perlu mengubah named.conf.local dengan _command_ ``nano /etc/bind/named.conf.local``.
+
+```
+zone "abimanyu.d07.com" {  
+        type master;  
+        file "/etc/bind/wayang/abimanyu.d07.com";
+};
+```
+
+- Kemudian buat 1 folder bernama abimanyu dengan : ``mkdir /etc/bind/abimanyu``. Lalu, sama seperti sebelumnya dengan copy file db.local dengan ``cp /etc/bind/db.local /etc/bind/abimanyu/abimanyu.d07.com`` dan buka file abimanyu yang telah di copy, kemudian sesuaikan isinya.
+
+```
+$TTL    604800  
+@       IN      SOA     abimanyu.d07.com. root.abimanyu.d07.com. (
+2		;serial
+604800	;refresh
+86400		;retry
+2419200	;expire
+604800)	;negative cache ttl
+;
+@               IN      NS      abimanyu.d07.com.
+@               IN      A       10.25.3.3 ; IP Abimanyu
+www             IN      CNAME   abimanyu.d07.com.
+```
+
 - Selanjutnya lakukan restart bin dengan perintah ``service bind9 restart`` dan mengubah settingan nameserver pada nakula dan sadewa (client) dengan mengganti name server pada nano ``/etc/resolv.conf`` yang diisi dengan ip yudhistira. Terakhir, sama seperti sebelumnya kami melakukan testing dengan perintah ``ping abimanyu.d07.com -c 5`` dan ``ping www.abimanyu.d07.com``.
 
 ![WhatsApp Image 2023-10-17 at 20 23 59_040fa0a1](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/b2ff95b8-973f-471d-afed-6486c3a873e7)
