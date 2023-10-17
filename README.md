@@ -231,6 +231,7 @@ service nginx restart
 ``
 
 **Node Prabukusuma**
+
 Tentu saja, langkah berikut berlaku untuk nginx worker lainnya, yaitu Abimanyu dan Wisanggeni
 
 Menetapkan server DNS ke alamat IP 192.168.122.1 dalam file `resolv.conf`.
@@ -294,10 +295,12 @@ service nginx restart
 **Testing**
 
 lynx http://arjuna.d07.com
-<img width="363" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/3bfde72b-e621-46c2-88a1-58a2e7efad20">
+
+><img width="363" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/3bfde72b-e621-46c2-88a1-58a2e7efad20">
 
 lynx 10.25.3.2:8001
-<img width="359" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/88759e16-4e35-4cf6-9552-7f9aaf11d811">
+
+><img width="359" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/88759e16-4e35-4cf6-9552-7f9aaf11d811">
 
 
 
@@ -355,8 +358,10 @@ service apache2 restart
 ``
 
 **Testing**
+
 lynx abimanyu.d07.com
-<img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/160fb1eb-7b65-42da-a67a-d9825fdc4ac5">
+
+><img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/160fb1eb-7b65-42da-a67a-d9825fdc4ac5">
 
 
 ### Soal 12
@@ -407,9 +412,12 @@ Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
 ``
 service apache2 restart
 ``
+
 **Testing**
+
 lynx www.abimanyu.d07.com/home
-<img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c8bcc99a-e72a-4c37-b773-7e8df6716eb1">
+
+><img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c8bcc99a-e72a-4c37-b773-7e8df6716eb1">
 
 
 ### Soal 13
@@ -417,6 +425,7 @@ lynx www.abimanyu.d07.com/home
 Selain itu, pada subdomain **www.parikesit.abimanyu.yyy.com**, DocumentRoot disimpan pada /var/www/parikesit.abimanyu.yyy.
 
 **Jawaban**
+
 Blok teks berikut ini menetapkan konfigurasi VirtualHost untuk `parikesit.abimanyu.d07.com`:
 ```
 echo "
@@ -460,8 +469,10 @@ service apache2 restart
 ``
 
 **Testing**
+
 lynx parikesit.abimanyu.d07.com
-<img width="364" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/f5bed3ea-5eda-48e7-a7b3-3c77b3751462">
+
+><img width="364" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/f5bed3ea-5eda-48e7-a7b3-3c77b3751462">
 
 
 
@@ -504,12 +515,16 @@ Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
 ``
 service apache2 restart
 ``
+
 **Testing**
+
 lynx parikesit.abimanyu.d07.com/public
-<img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/a4710e80-ac99-401b-81e7-d5320eb66ee7">
+
+><img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/a4710e80-ac99-401b-81e7-d5320eb66ee7">
 
 lynx parikesit.abimanyu.d07.com/secret
-<img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/eebfc0ee-c657-4dd3-8e60-d06bc1605790">
+
+><img width="361" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/eebfc0ee-c657-4dd3-8e60-d06bc1605790">
 
 
 
@@ -554,13 +569,16 @@ Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
 ``
 service apache2 restart
 ``
+
 **Testing**
 
 lynx parikesit.abimanyu.d07.com/secret
-<img width="358" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c2251b7e-44fa-42f3-99e5-27b0f2a9f82a">
+
+><img width="358" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c2251b7e-44fa-42f3-99e5-27b0f2a9f82a">
 
 lynx parikesit.abimanyu.d07.com/tesssss
-<img width="363" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/aaf58f6f-7fe8-446d-ac75-8ca99bccb1c5">
+
+><img width="363" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/aaf58f6f-7fe8-446d-ac75-8ca99bccb1c5">
 
 
 
@@ -611,10 +629,11 @@ Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
 service apache2 restart
 ``
 
-
 **Testing**
+
 lynx parikesit.abimanyu.d07.com/js
-<img width="359" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/dde7c7e9-d92f-43b5-9a36-faba31ec3715">
+
+><img width="359" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/dde7c7e9-d92f-43b5-9a36-faba31ec3715">
 
 
 
@@ -651,10 +670,11 @@ echo "
 
 
 Mengunduh dan menyiapkan konten untuk `rjp.baratayuda.abimanyu.d07.com`:
+```
 wget --no-check-certificate "https://drive.google.com/uc?id=1pPSP7yIR05JhSFG67RVzgkb-VcW9vQO6" -O download.zip
 unzip download.zip
 mv rjp.baratayuda.abimanyu.yyy.com /var/www/rjp.baratayuda.abimanyu.d07
-
+```
 Membuat file index.php di direktori DocumentRoot
 
 ```
@@ -681,16 +701,20 @@ service apache2 restart
 ``
 
 **Testing**
+
+lynx rjp.baratayuda.abimanyu.d07.com:80
+
+><img width="441" alt="Screenshot 2023-10-11 213744" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/ffd57abd-bae8-47f4-a0e5-fd2145452b2f">
+
 lynx rjp.baratayuda.abimanyu.d07.com:14000
 
 lynx rjp.baratayuda.abimanyu.d07.com:14400
 
+><img width="431" alt="Screenshot 2023-10-11 213709" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/78165f77-5ee2-40a1-9b66-83a7b8c58b2d">
+
 lynx rjp.baratayuda.abimanyu.d07.com:8000
 
-
-<img width="441" alt="Screenshot 2023-10-11 213744" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/ffd57abd-bae8-47f4-a0e5-fd2145452b2f">
-<img width="362" alt="Screenshot 2023-10-11 213310" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/2f3702c5-8dc0-4439-af49-0ee269d63c48">
-<img width="431" alt="Screenshot 2023-10-11 213709" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/78165f77-5ee2-40a1-9b66-83a7b8c58b2d">
+><img width="362" alt="Screenshot 2023-10-11 213310" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/2f3702c5-8dc0-4439-af49-0ee269d63c48">
 
 
 
@@ -750,10 +774,12 @@ service apache2 restart
 ``
 
 **Testing**
+
 lynx rjp.baratayuda.abimanyu.d07.com:14000
-<img width="444" alt="Screenshot 2023-10-11 214920" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/815abf81-0043-4f05-acbf-3d474890887b">
-<img width="450" alt="Screenshot 2023-10-11 214928" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/169346df-fc56-4112-9969-82d904d4bdfa">
-<img width="447" alt="Screenshot 2023-10-11 214855" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/73d09efc-44a8-486b-871a-a66bd7632182">
+
+><img width="450" alt="Screenshot 2023-10-11 214928" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/169346df-fc56-4112-9969-82d904d4bdfa">
+><img width="444" alt="Screenshot 2023-10-11 214920" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/815abf81-0043-4f05-acbf-3d474890887b">
+><img width="447" alt="Screenshot 2023-10-11 214855" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/73d09efc-44a8-486b-871a-a66bd7632182">
 
 
 
@@ -786,10 +812,12 @@ Merestart layanan Apache untuk menerapkan perubahan konfigurasi.
 ``
 service apache2 restart
 ``
+
 **Testing**
+
 lynx 10.25.3.3
 
-<img width="437" alt="Screenshot 2023-10-11 215421" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c42c0c4c-3531-4822-9ce2-543dea46e074">
+><img width="437" alt="Screenshot 2023-10-11 215421" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/c42c0c4c-3531-4822-9ce2-543dea46e074">
 
 
 ### Soal 20
@@ -833,9 +861,10 @@ service apache2 restart
 ``
 
 **Testing**
+
 lynx parikesit.abimanyu.d07.com/public/images/not-abimanyu.png
 
-<img width="442" alt="Screenshot 2023-10-11 220124" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/00f6f014-2f3c-4183-abfb-a249d59208fb">
+><img width="442" alt="Screenshot 2023-10-11 220124" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/116176265/00f6f014-2f3c-4183-abfb-a249d59208fb">
 
 
 
