@@ -125,6 +125,9 @@ Buatlah _website_ utama pada node arjuna dengan akses ke **arjuna.yyy.com** deng
 - Kemudian kita melakukan restart bin dengan _command_ ``service bind9 restart`` dan merubah settingan nameserver yang ada pada nakula dan sadewa dengan mengganti name server pada ``nano /etc/resolv.conf``.
 - Terakhir kami melakukan testing dengan perintah ping ``arjuna.d07.com`` -c 5 dan ping ``www.arjuna.d07.com``.
 
+![WhatsApp Image 2023-10-17 at 20 23 20_e64ab189](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/bea79264-be8f-49f2-894d-3a9dc2b01498)
+
+
 ### Soal 3
 
 Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses ke **abimanyu.yyy.com** dan alias **www.abimanyu.yyy.com**.
@@ -134,6 +137,9 @@ Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses
 - Pertama kita perlu mengubah named.conf.local dengan perintah nano /etc/bind/named.conf.local
 - Kemudian kami membuat 1 folder bernama abimanyu dengan : ``mkdir /etc/bind/abimanyu``. Lalu, sama seperti sebelumnya dengan copy file db.local dengan ``cp /etc/bind/db.local /etc/bind/abimanyu/abimanyu.d07.com`` dan buka file abimanyu yang telah di copy, kemudian sesuaikan isinya.
 - Selanjutnya lakukan restart bin dengan perintah ``service bind9 restart`` dan mengubah settingan nameserver pada nakula dan sadewa (client) dengan mengganti name server pada nano ``/etc/resolv.conf`` yang diisi dengan ip yudhistira. Terakhir, sama seperti sebelumnya kami melakukan testing dengan perintah ``ping abimanyu.b07.com -c 5`` dan ``ping www.abimanyu.b07.com``.
+
+![WhatsApp Image 2023-10-17 at 20 23 59_040fa0a1](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/b2ff95b8-973f-471d-afed-6486c3a873e7)
+
 
 ### Soal 4
 
