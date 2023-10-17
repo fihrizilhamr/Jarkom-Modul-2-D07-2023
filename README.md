@@ -136,7 +136,7 @@ Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses
 
 - Pertama kita perlu mengubah named.conf.local dengan perintah nano /etc/bind/named.conf.local
 - Kemudian kami membuat 1 folder bernama abimanyu dengan : ``mkdir /etc/bind/abimanyu``. Lalu, sama seperti sebelumnya dengan copy file db.local dengan ``cp /etc/bind/db.local /etc/bind/abimanyu/abimanyu.d07.com`` dan buka file abimanyu yang telah di copy, kemudian sesuaikan isinya.
-- Selanjutnya lakukan restart bin dengan perintah ``service bind9 restart`` dan mengubah settingan nameserver pada nakula dan sadewa (client) dengan mengganti name server pada nano ``/etc/resolv.conf`` yang diisi dengan ip yudhistira. Terakhir, sama seperti sebelumnya kami melakukan testing dengan perintah ``ping abimanyu.b07.com -c 5`` dan ``ping www.abimanyu.b07.com``.
+- Selanjutnya lakukan restart bin dengan perintah ``service bind9 restart`` dan mengubah settingan nameserver pada nakula dan sadewa (client) dengan mengganti name server pada nano ``/etc/resolv.conf`` yang diisi dengan ip yudhistira. Terakhir, sama seperti sebelumnya kami melakukan testing dengan perintah ``ping abimanyu.d07.com -c 5`` dan ``ping www.abimanyu.d07.com``.
 
 ![WhatsApp Image 2023-10-17 at 20 23 59_040fa0a1](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/b2ff95b8-973f-471d-afed-6486c3a873e7)
 
@@ -198,7 +198,7 @@ Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdom
 
 **Jawaban**
 
-- Lakukan pemberian subdomain namun pada subdomain hasil delegasi sebelumnya dengan menambahkan rjp.dan alias www. kita melakukan perubahan pada file baratayuda.abimanyu.b07.com dengan ``nano /etc/bind/baratayuda/baratayuda.abimanyu.b07.com``.
+- Lakukan pemberian subdomain namun pada subdomain hasil delegasi sebelumnya dengan menambahkan rjp.dan alias www. kita melakukan perubahan pada file ``baratayuda.abimanyu.d07.com`` dengan ``nano /etc/bind/baratayuda/baratayuda.abimanyu.d07.com``.
 - Tambahkan subdomain sesuai ketentuan yaitu subdomain rjp dan memberikan alias www.rjp untuk CNAME yang di set menuju subdomain sebelumnya. Lakukan ``service bind9 stop``.
 - test ping dengan subdomain dan alias yang diberikan.
 
