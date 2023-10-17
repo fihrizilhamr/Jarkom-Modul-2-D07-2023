@@ -119,10 +119,40 @@ Buatlah _website_ utama pada node arjuna dengan akses ke **arjuna.yyy.com** deng
 **Jawaban**
 
 - Lakukan update dan isntall bind9 pada node yudhistira. Setelah itu kita harus mengubah named.conf.local yang ada pada direktori bind dengan command ``nano /etc/bind/named.conf.local``.
+
+```
+zone "arjuna.d07.com" {  
+        type master;  
+        file "/etc/bind/wayang/arjuna.d07.com";
+};
+```
+
 - Kemudian buat 1 folder bernama jarkom dengan command ``mkdir /etc/bind/jarkom``.
 - Selanjutnya salin file db.local pada path ``/etc/bind`` ke dalam folder jarkom yang baru saja dibuat dengan ``cp /etc/bind/db.local /etc/bind/jarkom/arjuna.d07.com``.
-- Kemudian kami membuka file arjuna.d07.com dan mengubah beberapa bagian.
+- Kemudian kami buka file arjuna.d07.com dan mengubah beberapa bagian.
+
+```
+$TTL 604800 
+@       IN      SOA     arjuna.d07.com. root.arjuna.d07.com. (
+2		;serial
+604800	;refresh
+86400		;retry
+2419200	;expire
+604800)	;negative cache ttl
+;
+@               IN      NS      arjuna.d07.com.
+@               IN      A       10.25.2.2 ; IP Arjuna
+www             IN      CNAME   arjuna.d07.com.
+```
+
 - Kemudian kita melakukan restart bin dengan _command_ ``service bind9 restart`` dan merubah settingan nameserver yang ada pada nakula dan sadewa dengan mengganti name server pada ``nano /etc/resolv.conf``.
+
+```
+echo "nameserver 192.168.122.1" > /etc/resolv.conf
+echo "nameserver 10.25.1.4" >> /etc/resolv.conf
+echo "nameserver 10.25.1.5" >> /etc/resolv.conf
+```
+
 - Terakhir kami melakukan testing dengan perintah ping ``arjuna.d07.com`` -c 5 dan ping ``www.arjuna.d07.com``.
 
 ![WhatsApp Image 2023-10-17 at 20 23 20_e64ab189](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/bea79264-be8f-49f2-894d-3a9dc2b01498)
