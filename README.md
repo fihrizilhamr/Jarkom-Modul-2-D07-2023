@@ -118,11 +118,27 @@ Buatlah _website_ utama pada node arjuna dengan akses ke **arjuna.yyy.com** deng
 
 **Jawaban**
 
+Untuk membuat website utama pertama tama kita harus melakukan update dan isntall bind9 pada node yudhistira. Setelah itu kita harus mengubah named.conf.local yang ada pada direktori bind dengan command berikut nano /etc/bind/named.conf.local ubah agar menjadi seperti ini
+
+<img width="816" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/d6f63f35-e460-4eb6-97bb-a229a6200af9">
+
+Kemudian kita membuat 1 folder bernama jarkom dengan command mkdir /etc/bind/jarkom. Selanjutnya kita harus salin file db.local pada path /etc/bind ke dalam folder jarkom yang baru saja dibuat dengan cp /etc/bind/db.local /etc/bind/jarkom/arjuna.d07.com kemudian kami membuka file arjuna.d07.com dan mengubah beberapa bagian.
+
+Kemudian kita melakukan restart bin dengan perintah : service bind9 restart dan merubah settingan nameserver yang ada pada nakula dan sadewa dengan mengganti name server pada nano /etc/resolv.conf
+
+<img width="596" alt="image" src="https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/93bfe20b-5730-432e-98aa-a4f749427487">
+
+Terakhir kami melakukan testing dengan perintah ping ``arjuna.d07.com`` -c 5 dan ping ``www.arjuna.d07.com``.
+
 ### Soal 3
 
 Dengan cara yang sama seperti soal nomor 2, buatlah _website_ utama dengan akses ke **abimanyu.yyy.com** dan alias **www.abimanyu.yyy.com**.
 
 **Jawaban**
+
+- Pertama kita perlu mengubah named.conf.local dengan perintah nano /etc/bind/named.conf.local
+- Kemudian kami membuat 1 folder bernama abimanyu dengan : ``mkdir /etc/bind/abimanyu``. Lalu, sama seperti sebelumnya dengan copy file db.local dengan ``cp /etc/bind/db.local /etc/bind/abimanyu/abimanyu.d07.com`` dan buka file abimanyu yang telah di copy, kemudian sesuaikan isinya.
+- Selanjutnya lakukan restart bin dengan perintah ``service bind9 restart`` dan mengubah settingan nameserver pada nakula dan sadewa (client) dengan mengganti name server pada nano ``/etc/resolv.conf`` yang diisi dengan ip yudhistira. Terakhir, sama seperti sebelumnya kami melakukan testing dengan perintah ``ping abimanyu.b07.com -c 5`` dan ``ping www.abimanyu.b07.com``.
 
 ### Soal 4
 
@@ -130,11 +146,21 @@ Kemudian, karena terdapat beberapa web yang harus di-_deploy_, buatlah subdomain
 
 **Jawaban**
 
+![WhatsApp Image 2023-10-17 at 20 24 48_6e6f3212](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/1195e727-93de-4b28-8ee3-5590b4ad36a9)
+
+- Pada yudhistira, buka ``nano /etc/bind/abimanyu/abimanyu.d07.com`` dan tambahkan konfigurasi untuk menambahkan subdomain.
+- Dengan konfigurasi diatas, maka akan menambahkan domain dengan nama parikesit yang juga akan mengarah ke ip abimanyu. Kemudian lakukan ``restart bind service bind9 restart`` dan lakukan pengetesan untuk melakukan ping pada subdomain.
+
 ### Soal 5
 
 Buat juga _reverse_ domain untuk domain utama. **(Abimanyu saja yang direverse)**
 
 **Jawaban**
+
+![WhatsApp Image 2023-10-17 at 20 25 28_d65e032d](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/bdfb9db7-01d1-4ae1-bdac-d00b4c2215c2)
+
+- Pertama tama, edit ``named.conf.local`` dengan membuka ``nano /etc/bind/named.conf.local`` kemudian tambahkan konfigurasi untuk melakukan reverse domain utama yaitu abimanyu.
+- Kemudian kami harus melakukan restart service bind9 restart untuk melakukan pengecekan konfigurasi maka pada _client_ (nakula/sadewa) bisa dilakukan download dengan nameserver awal dulu (192.168.122.1) agar terhubung ke internet untuk melakukan ``apt-get update`` dan juga ``apt-get install dnsutils``. Setelah proses download selesai maka ubah nameserver ke arah yudhistira untuk melakukan cek konfigurasi dan apabila berhasil maka akan muncul output seperti gmabar di atas.
 
 ### Soal 6
 
@@ -142,17 +168,41 @@ Agar dapat tetap dihubungi ketika DNS Server Yudhistira bermasalah, buat juga We
 
 **Jawaban**
 
+- Edit pada ``/etc/bind/named.conf.local`` di yudhistira dan sesuaikan.
+- mengubah pada kedua dns, kemudian lakukan ``service bind9 restart``.
+- Lakukan setting pada dns slave yaitu werkudara dengan mengunduh bind9 dengan cara ``apt-get update`` kemudian ``apt-get install bind9 -y``.
+- Tenambahkan pada /etc/bind/named.conf.local pada werkudara dengan kedua dns, karena kita mengubah pada keduanya.
+- Kemudian lakukan ``service bind9 restart``.
+- Lakukan ``service bind9 stop``
+- Pada yudhistira untuk melakukan cek apakah bisa mengakses melalui dns slave yang sudah dibuat. pada client (nakula/sadewa) masukkan 2 nameserver yaitu ip dari yudhistira dan juga ip dari werkudara dengan ``nano /etc/resolv.conf``.
+- Lakukan ping ke kedua dns pada client sadewa dan ping berhasil meskipun bind9 pada yudhistira di stop yang berarti konfigurasi dns slave berhasil.
+
+![WhatsApp Image 2023-10-17 at 20 23 20_8cc7789f](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/fc4af330-976d-4412-bf7a-4585af0dfe55)
+
+![WhatsApp Image 2023-10-17 at 20 23 59_2f48eca6](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/ad2c5319-83fd-451d-bbfc-9db7984e1c35)
+
+
 ### Soal 7
 
 Seperti yang kita tahu karena banyak sekali informasi yang harus diterima, buatlah subdomain khusus untuk perang yaitu **baratayuda.abimanyu.yyy.com** dengan alias **www.baratayuda.abimanyu.yyy.com** yang didelegasikan dari Yudhistira ke Werkudara dengan IP menuju ke Abimanyu dalam folder Baratayuda.
 
 **Jawaban**
 
+![WhatsApp Image 2023-10-17 at 20 29 07_03cee6ef](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/f95d0bf2-a0d6-4dec-9387-6d719253df51)
+
+
 ### Soal 8
 
 Untuk informasi yang lebih spesifik mengenai Ranjapan Baratayuda, buatlah subdomain melalui Werkudara dengan akses **rjp.baratayuda.abimanyu.yyy.com** dengan alias **www.rjp.baratayuda.abimanyu.yyy.com** yang mengarah ke Abimanyu.
 
 **Jawaban**
+
+- Lakukan pemberian subdomain namun pada subdomain hasil delegasi sebelumnya dengan menambahkan rjp.dan alias www. kita melakukan perubahan pada file baratayuda.abimanyu.b07.com dengan ``nano /etc/bind/baratayuda/baratayuda.abimanyu.b07.com``.
+- Tambahkan subdomain sesuai ketentuan yaitu subdomain rjp dan memberikan alias www.rjp untuk CNAME yang di set menuju subdomain sebelumnya. Lakukan ``service bind9 stop``.
+- test ping dengan subdomain dan alias yang diberikan.
+
+![WhatsApp Image 2023-10-17 at 20 31 04_5e51fc67](https://github.com/fihrizilhamr/Jarkom-Modul-2-D07-2023/assets/105486369/80c2c8ee-0125-47f3-a2aa-bf88f85543de)
+
 
 ### Soal 9
 
@@ -311,6 +361,7 @@ lynx 10.25.3.2:8001
 Selain menggunakan Nginx, lakukan konfigurasi Apache Web Server pada worker Abimanyu dengan web server **www.abimanyu.yyy.com**. Pertama dibutuhkan web server dengan DocumentRoot pada /var/www/abimanyu.yyy
 
 **Jawaban**
+
 **Node Abimanyu**
 Menghentikan layanan Nginx. Menginstal Apache2 dan PHP. Memulai layanan Apache2. Menginstal modul PHP untuk Apache. Menginstal utilitas unzip untuk mengekstrak arsip ZIP.
 ```
@@ -533,6 +584,7 @@ lynx parikesit.abimanyu.d07.com/secret
 Buatlah kustomisasi halaman error pada folder /error untuk mengganti error kode pada Apache. Error kode yang perlu diganti adalah **_404 Not Found_** dan **_403 Forbidden_**.
 
 **Jawaban**
+
 Blok teks berikut ini menetapkan konfigurasi VirtualHost untuk `parikesit.abimanyu.d07.com` dengan menambahkan konfigurasi `ErrorDocument` untuk mengganti halaman error yang diinginkan:
 ```
 echo "
@@ -642,6 +694,7 @@ lynx parikesit.abimanyu.d07.com/js
 Agar aman, buatlah konfigurasi agar **www.rjp.baratayuda.abimanyu.yyy.com** hanya dapat diakses melalui port **14000** dan **14400**.
 
 **Jawaban**
+
 Dua blok konfigurasi untuk VirtualHost pada dua port (14000 dan 14400) untuk situs `rjp.baratayuda.abimanyu.d07.com`:
 
 ```
@@ -723,6 +776,7 @@ lynx rjp.baratayuda.abimanyu.d07.com:8000
 Untuk mengaksesnya buatlah autentikasi username berupa **“Wayang”** dan password **“baratayudayyy”** dengan yyy merupakan kode kelompok. Letakkan DocumentRoot pada **/var/www/rjp.baratayuda.abimanyu.yyy**.
 
 **Jawaban**
+
 Membuat file htpasswd di lokasi `/etc/apache2/.htpasswd` dengan menambahkan pengguna baru "Wayang" dengan kata sandi "baratayudad07".
 
 ``
